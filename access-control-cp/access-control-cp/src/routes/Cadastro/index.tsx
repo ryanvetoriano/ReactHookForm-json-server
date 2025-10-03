@@ -18,6 +18,14 @@ export default function Cadastro() {
       alert("Usuário ou email já cadastrados!");
       return;
     }
+
+    await fetch("http://localhost:3001/usuarios", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    alert("Usuário cadastrado com sucesso!");
   };
 
   return <main></main>;

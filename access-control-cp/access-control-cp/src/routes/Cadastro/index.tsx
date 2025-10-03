@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import type { User } from "../../types/tipoUsuario";
+import { useNavigate } from "react-router-dom";
 
 export default function Cadastro() {
   const {
@@ -7,6 +8,8 @@ export default function Cadastro() {
     handleSubmit,
     formState: { errors },
   } = useForm<User>();
+
+  const navigate = useNavigate();
 
   const onSubmit = async (data: User) => {
     const res = await fetch(
@@ -26,6 +29,7 @@ export default function Cadastro() {
     });
 
     alert("Usuário cadastrado com sucesso!");
+    navigate("/");
   };
 
   return <main></main>;

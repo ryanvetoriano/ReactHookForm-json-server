@@ -32,5 +32,40 @@ export default function Cadastro() {
     navigate("/");
   };
 
-  return <main></main>;
+  return (
+    <main>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h2>Cadastro</h2>
+        <div>
+          <label>Nome</label>
+          <input {...register("nome", { required: "Nome é obrigatório" })} />
+          {errors.nome && <p>{errors.nome.message}</p>}
+        </div>
+        <div>
+          <label>Nome de Usuário</label>
+          <input
+            {...register("nomeUsuario", {
+              required: "Nome de usuário é obrigatório",
+            })}
+          />
+          {errors.nomeUsuario && <p>{errors.nomeUsuario.message}</p>}
+        </div>
+        <div>
+          <label>Email</label>
+          <input
+            {...register("email", {
+              required: "Email é obrigatório",
+              pattern: { value: /^\S+@\S+$/i, message: "Email inválido" },
+            })}
+          />
+          {errors.email && <p>{errors.email.message}</p>}
+        </div>
+        <button type="submit">Cadastrar</button>
+        <br />
+        <button type="button" onClick={() => navigate("/")}>
+          Voltar para Login
+        </button>
+      </form>
+    </main>
+  );
 }

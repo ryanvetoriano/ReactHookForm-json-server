@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Home() {
   const user = localStorage.getItem("loggedUser");
   const parsedUser = user ? JSON.parse(user) : null;
+  const navigate = useNavigate()
 
   return (
     <main>
@@ -13,6 +16,14 @@ export default function Home() {
         ) : (
           <p>Você não está logado.</p>
         )}
+        <button
+          onClick={() => {
+            localStorage.removeItem("loggedUser");
+            navigate("/");
+          }}
+        >
+          Sair
+        </button>
       </div>
     </main>
   );

@@ -6,6 +6,7 @@ import Error from './routes/Error/index.tsx';
 import Login from './routes/Login/index.tsx';
 import Cadastro from './routes/Cadastro/index.tsx';
 import Home from './routes/Home/index.tsx';
+import './globals.css';
 
 const router = createBrowserRouter([
   {

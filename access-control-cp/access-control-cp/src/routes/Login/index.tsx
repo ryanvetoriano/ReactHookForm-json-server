@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import type { TipoLogin } from "../../types/tipoLogin";
+import type { User } from "../../types/tipoUsuario";
 
 export default function Login() {
   const {
@@ -8,5 +9,7 @@ export default function Login() {
     formState: { errors },
   } = useForm<TipoLogin>();
 
+  const onSubmit = async (data: User) => {};
+  
   return <main></main>;
 }

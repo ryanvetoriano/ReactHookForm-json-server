@@ -12,7 +12,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const onSubmit = async (data: User) => {
+  const onSubmit = async (data: TipoLogin) => {
     const res = await fetch(
       `http://localhost:3001/usuarios?nomeUsuario=${data.nomeUsuario}&email=${data.email}`
     );
@@ -24,8 +24,39 @@ export default function Login() {
     }
 
     localStorage.setItem("loggedUser", JSON.stringify(users[0]));
+    alert("Login realizado com sucesso!");
     navigate("/home");
   };
 
-  return <main></main>;
+  return (
+    <main>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h2>Login</h2>
+        <div>
+          <label>Nome de Usuário</label>
+          <input
+            {...register("nomeUsuario", {
+              required: "Nome de usuário é obrigatório",
+            })}
+          />
+          {errors.nomeUsuario && <p>{errors.nomeUsuario.message}</p>}
+        </div>
+        <div>
+          <label>Email</label>
+          <input
+            {...register("email", {
+              required: "Email é obrigatório",
+              pattern: { value: /^\S+@\S+$/i, message: "Email inválido" },
+            })}
+          />
+          {errors.email && <p>{errors.email.message}</p>}
+        </div>
+        <button type="submit">Entrar</button>
+        <br />
+        <button type="button" onClick={() => navigate("/cadastro")}>
+          Ir para Cadastro
+        </button>
+      </form>
+    </main>
+  );
 }
